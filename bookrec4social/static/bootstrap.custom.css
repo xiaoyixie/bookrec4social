@@ -1,0 +1,52 @@
+
+/* .navbar-custom { */
+/*     background-color: black; */
+/* } */
+
+/* /\* change the brand and text color *\/ */
+/* .navbar-custom .navbar-brand, */
+/* .navbar-custom .navbar-text { */
+/*     color: rgba(255,255,255,.8); */
+/* } */
+
+/* /\* change the link color *\/ */
+/* .navbar-custom .navbar-nav .nav-link { */
+/*     color: rgba(255,255,255,.5); */
+/* } */
+
+/* /\* change the color of active or hovered links *\/ */
+/* .navbar-custom .nav-item.active .nav-link, */
+/* .navbar-custom .nav-item:hover .nav-link { */
+/*     color: #ffffff; */
+/* } */
+
+/* .navbar-custom { */
+/*     background-color: #ff5500; */
+/* } */
+
+.navbar-custom {
+    min-height: 80px;
+}
+
+.navbar-custom .navbar-brand {
+    padding: 0 15px;
+    height: 80px;
+    line-height: 80px;
+    color: white;
+}
+
+.navbar-custom .navbar-brand::hover,
+.navbar-custom .navbar-brand::focus,
+.navbar-custom .navbar-brand::active,
+.navbar-custom .navbar-brand.active{
+    color: white;
+}
+
+@media (min-width: 768px) {
+    .navbar-nav > li > a {
+	/* (80px - line-height of 27px) / 2 = 26.5px */
+	padding-top: 26.5px;
+	padding-bottom: 26.5px;
+	line-height: 27px;
+    }
+}
