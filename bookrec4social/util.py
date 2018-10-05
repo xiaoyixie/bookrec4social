@@ -11,6 +11,7 @@ from sklearn.decomposition import TruncatedSVD
 from collections import defaultdict
 from numpy import linalg as LA
 
+currentpath = str(os.path.dirname(os.path.abspath(__file__)))
 # Custom libraries
 # import secret  # need to make this and add goodreads_api key
 
@@ -30,7 +31,18 @@ def get_id_from_username(username, api_key):
         # raise ValueError('Invalid Goodreads username, not id returned')
         return None
 
+def get_url_from_id(user_id, api_key):
+    response = requests.get('https://www.goodreads.com/user/show/?key=' + api_key + '&id=' + user_id + '&format=xml')
+    tree = ElementTree.fromstring(response.content)
+    try:
+        user_url = tree.find('user').find('link').text
+        return user_url
+    except:
+        # raise ValueError('Invalid Goodreads username, not id returned')
+        return None
 
+
+    
 def get_user_vector(user_input, mapper):
     """ Gets the user ratings vector of a user
 
@@ -47,7 +59,7 @@ def get_user_vector(user_input, mapper):
             an error message string, if there is an error
     """
     try:
-        sparse_q = scipy.sparse.load_npz('static/data/cached_users/user_' + user_input + '.npz')
+        sparse_q = scipy.sparse.load_npz(currentpath+'/static/data/cached_users/user_' + user_input + '.npz')
         q = sparse_q.toarray()
         q = np.array(q[0].tolist())
         print('found user_vector...')
@@ -92,14 +104,13 @@ def get_user_vector(user_input, mapper):
         q = feature_scaling(q)
 
         # Disable this until we find a 'smart' caching solution
-        # print('saving user_vector...')
-        # scipy.sparse.save_npz('static/data/cached_users/user_'+user_input+'.npz', scipy.sparse.csr_matrix(q))
+        print('saving user_vector...')
+        scipy.sparse.save_npz(currentpath+'/static/data/cached_users/user_'+user_input+'.npz', scipy.sparse.csr_matrix(q))
 
         return q, None
 
 
 def get_friends_information(user_input, q, mapper):
-
 
     """ Gets the user ratings vector of a user
 
@@ -139,7 +150,10 @@ def get_friends_information(user_input, q, mapper):
     # url="https://www.goodreads.com/user/show/14215152-denisa"
     # url="https://www.goodreads.com/user/show/16737045-jeanny"
 
-    url="https://www.goodreads.com/user/show/18903098-daniel-penev"
+    # url="https://www.goodreads.com/user/show/18903098-daniel-penev"
+    api_key = '4nbvcBRfYZ1MSL06ARuw'
+    url = get_url_from_id(user_input, api_key)
+    print(url)
     result = session_requests.get(url, headers = dict(referer = url))
     tree = html.fromstring(result.content)
     friend_names=tree.xpath("//div[@class='friendName']/a/text()")

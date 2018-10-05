@@ -236,7 +236,7 @@ def home_post():
             
         else:
             q_new = np.add(q, friend_vec)
-            top_books = get_top_n_recs(map_user(q_new, item_matrix), books, 18, q_new)
+            top_books = get_top_n_recs(map_user(q_new, item_matrix), books, 18, q)
             chunks = chunker(top_books)
             return render_template('book_list.html',
                                        toPass=chunks,
