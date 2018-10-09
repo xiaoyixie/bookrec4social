@@ -12,8 +12,6 @@ from collections import defaultdict
 from numpy import linalg as LA
 
 currentpath = str(os.path.dirname(os.path.abspath(__file__)))
-# Custom libraries
-# import secret  # need to make this and add goodreads_api key
 
 not_found_error_message = "That username doesn't seem to exist on Goodreads, I'm sorry"
 private_error_message = "This user account is private, I'm sorry"
@@ -112,20 +110,6 @@ def get_user_vector(user_input, mapper):
 
 def get_friends_information(user_input, q, mapper):
 
-    """ Gets the user ratings vector of a user
-
-    Args:
-        user_input::str
-            username of the user
-        mapper::dict
-            maps the goodreads book id to our ids
-
-    Returns:
-        user_vector::np.array
-            an array of 10000 ratings for the given user
-        error_message::str
-            an error message string, if there is an error
-    """
     from lxml import html
     password = '320501xxy'
     session_requests = requests.session()
@@ -147,10 +131,7 @@ def get_friends_information(user_input, q, mapper):
         )
     
     users = []
-    # url="https://www.goodreads.com/user/show/14215152-denisa"
-    # url="https://www.goodreads.com/user/show/16737045-jeanny"
 
-    # url="https://www.goodreads.com/user/show/18903098-daniel-penev"
     api_key = '4nbvcBRfYZ1MSL06ARuw'
     url = get_url_from_id(user_input, api_key)
     print(url)
@@ -186,60 +167,6 @@ def get_friends_information(user_input, q, mapper):
             friend_class[friend_ids[ix]] = {'ID':friend_ids[ix], 'Name':friend_names[ix], 'Score':score, 'Books':len(np.nonzero(vec)[0])}
     print(friend_class)
     
-    
-    #     for user in theseusers:
-    #         print(user)
-    #         if user not in users :
-    #             users.append(user)
-    
-    # try:
-    #     # sparse_q = scipy.sparse.load_npz('static/data/cached_users/user_' + user_input + '.npz')
-    #     # q = sparse_q.toarray()
-    #     # q = np.array(q[0].tolist())
-    #     # print('found user_vector...')
-    #     # return q, None
-    #     api_key = '4nbvcBRfYZ1MSL06ARuw'
-    #     if not user_input.isdigit():
-    #         user_id = get_id_from_username(user_input, api_key)
-    #     else:
-    #         user_id = user_input
-
-    #     if user_id is None:
-    #         return None, not_found_error_message        
-    # except:
-
-        
-    #     page = 1
-    #     total_valid_reviews = 0
-    #     while True:
-    #         response = requests.get('https://www.goodreads.com/review/list/?v=2&id=' + user_id + '&shelf=read&format=xml&key=' + api_key + '&per_page=200&page=' + str(page))
-    #         tree = ElementTree.fromstring(response.content)
-    #         reviews = tree.find('reviews')
-    #         if reviews is None:
-    #             return None, private_error_message
-    #         for review in reviews:
-    #             goodreads_book_id = str(review.find('book').find('id').text)
-    #             if goodreads_book_id in mapper:
-    #                 book_id = int(mapper[goodreads_book_id])
-    #                 rating = int(review.find('rating').text)
-    #                 q[book_id - 1] = float(rating)
-    #                 total_valid_reviews += 1
-    #         page += 1
-
-    #         print(len(reviews))
-    #         if len(reviews) < 1:
-    #             break
-
-    #     print("total valid reviews: %s" % (total_valid_reviews))
-    #     if total_valid_reviews < 1:
-    #         return None, no_ratings_error_message
-
-    #     q = feature_scaling(q)
-
-    #     # Disable this until we find a 'smart' caching solution
-    #     # print('saving user_vector...')
-    #     # scipy.sparse.save_npz('static/data/cached_users/user_'+user_input+'.npz', scipy.sparse.csr_matrix(q))
-    # session_requests.config['keep_alive'] = False
     return friend_names, friend_class, friend_vec, ncount
 
 
