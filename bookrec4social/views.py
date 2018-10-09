@@ -198,7 +198,7 @@ def home_post():
                                    titles=titles)
 
         # Get recs using item_matrix
-        top_books = get_top_n_recs(map_user(q, item_matrix), books, 18, q)
+        top_books = get_top_n_recs(map_user(q, item_matrix), books, 60, q)
         chunks = chunker(top_books)
 
         # Get recs using svd
@@ -236,7 +236,7 @@ def home_post():
             
         else:
             q_new = np.add(q, friend_vec)
-            top_books = get_top_n_recs(map_user(q_new, item_matrix), books, 18, q)
+            top_books = get_top_n_recs(map_user(q_new, item_matrix), books, 60, q)
             chunks = chunker(top_books)
             return render_template('book_list.html',
                                        toPass=chunks,

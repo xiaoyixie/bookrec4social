@@ -5,13 +5,14 @@
     <article>
       <div class="container">
         <div class="response">
-          <h3>Select the desired option to get recommendations</h3>
+          <!-- <h3>Select the desired option to get recommendations</h3> -->
+	  <h3>Recommender Meets Social Network</h3>
         </div>
         <div class="panel-group" id="accordion">
           <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Give me recommendations based on my Goodreads profile</a>
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Give me recommendations based on my goodreads profile</a>
               </h3>
             </div>
             <div id="collapse1" class="panel-collapse collapse">
@@ -20,7 +21,7 @@
                   With this option, we will recommend you books taking into account all the books you have. </p>
                 <form class="form" method="POST">
                   <input class="text_box" name="text" placeholder="Goodreads ID">
-		  <p>Example: "https://www.goodreads.com/user/show/18903098-daniel-penev" -> Input: 18903098 </p>
+		  <p>Example: "https://www.goodreads.com/user/show/11645751-jerome" -> Input: 11645751 </p>
                   <button class="button has-spinner" type="submit" name='user_recs' value="Get Recommendations">
                     Get Recommendations
                     <!-- <span class="spinner"><i class="fa fa-refresh fa-spin"></i></span> -->
@@ -35,7 +36,7 @@
           <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Recommend books based on social network</a>
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Recommend books based on my social network</a>
               </h3>
             </div>
             <div id="collapse2" class="panel-collapse collapse">
@@ -45,7 +46,7 @@
                 </p>
 		<form class="form" method="POST">
                   <input class="text_box" name="text" placeholder="Goodreads ID">
-		  <p>Example: "https://www.goodreads.com/user/show/18903098-daniel-penev" -> Input: 18903098 </p>
+		  <p>Example: "https://www.goodreads.com/user/show/11645751-jerome" -> Input: 11645751 </p>
                   <button class="button has-spinner" type="submit" name='user_friends' value="Get Recommendations">
                     Recommend books !
                     <!-- <span class="spinner"><i class="fa fa-refresh fa-spin"></i></span> -->

@@ -203,6 +203,15 @@ h1 a {
 h1 a:hover {
     color: #666;
 }
+
+h6 {
+    font-size: 1.2vmin;
+}
+
+h5 {
+    font-size: 1.5vmin;
+}
+
 h4 {
     font-size: 2vmin;
 }
