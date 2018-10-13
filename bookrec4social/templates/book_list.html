@@ -24,12 +24,11 @@
 		  <p>Example: "https://www.goodreads.com/user/show/11645751-jerome" -> Input: 11645751 </p>
                   <button class="button has-spinner" type="submit" name='user_recs' value="Get Recommendations">
                     Get Recommendations
-                    <!-- <span class="spinner"><i class="fa fa-refresh fa-spin"></i></span> -->
+
                   </button>
 		 
 
                 </form>
-                <!-- <p>Please allow for loading time of up to 5 seconds per 100 books you've rated</p> -->
               </div>
             </div>
           </div>
@@ -49,77 +48,18 @@
 		  <p>Example: "https://www.goodreads.com/user/show/11645751-jerome" -> Input: 11645751 </p>
                   <button class="button has-spinner" type="submit" name='user_friends' value="Get Recommendations">
                     Recommend books !
-                    <!-- <span class="spinner"><i class="fa fa-refresh fa-spin"></i></span> -->
+     
                   </button>
                 </form>
 				
-                <!-- <form class="form" method="POST"> -->
-                <!--   <select class="js-example-basic-single" name="books"> -->
-                <!--     <option value="">Enter a Title</option> -->
-                <!--     {% for title in titles %} -->
-                <!--     <option value="{{title}}">{{title}}</option> -->
-                <!--     {% endfor %} -->
-                <!--   </select> -->
-                <!--   <br> -->
-                <!--   <input class="button" type="submit" name='book_recs' value="Get Recommendations"> -->
-                <!-- </form> -->
-                <!-- <p><strong>Note:</strong> Please allow up to 5 seconds for us to register your selecion in the search bar</p> -->
               </div>
             </div>
           </div>
-          <!-- <div class="panel panel-default"> -->
-          <!--     <div class="panel-heading"> -->
-          <!--         <h3 class="panel-title"> -->
-          <!--           <a data-toggle="collapse" data-parent="#accordion" href="#collapse3"> -->
-	  <!-- 	      Give me recommendations based on my goodreads social network</a> -->
-          <!--         </h3> -->
-          <!--     </div> -->
-          <!--     <div id="collapse3" class="panel-collapse collapse"> -->
-          <!--         <div class="input_container"> -->
-          <!--           <p> -->
-          <!--             This option will consider what you and your friends read. And give recommendations with the combined information. -->
-          <!--           </p> -->
-          <!--           <\!-- <form class="form" method="POST"> -\-> -->
-          <!--           <\!--       <select class="js-example-basic-single" name="books"> -\-> -->
-          <!--           <\!--           <option value="">Enter a Title</option> -\-> -->
-          <!--           <\!--           {% for title in titles %} -\-> -->
-          <!--           <\!--           <option value="{{title}}">{{title}}</option> -\-> -->
-          <!--           <\!--           {% endfor %} -\-> -->
-          <!--           <\!--       </select> -\-> -->
-          <!--           <\!--       <br> -\-> -->
-          <!--           <\!--       <input class="button" type="submit" name='book_similar' value="Get Similar Books"> -\-> -->
-          <!--           <\!--   </form> -\-> -->
-          <!--           <\!--   <p><strong>Note:</strong> Please allow up to 5 seconds for us to register your selecion in the search bar</p> -\-> -->
-          <!--         </div> -->
-          <!--     </div> -->
-          <!-- </div> -->
-          <!--         <div class="panel panel-default"> -->
-          <!--             <div class="panel-heading"> -->
-          <!--                 <h3 class="panel-title"> -->
-          <!--                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">I am indecisive, just show me the most popular books</a> -->
-          <!--                 </h3> -->
-          <!--             </div> -->
-          <!--             <div id="collapse4" class="panel-collapse collapse"> -->
-          <!--                 <div class="input_container"> -->
-          <!--                     <p> -->
-          <!--                         Returns the top 99 most popular books according to Goodreads 'most-read' -->
-          <!--                     </p> -->
-          <!--                     <form class="form" method="POST"> -->
-          <!--                         <input class="button" type="submit" name='most_popular' value="Get Most Popular"> -->
-          <!--                     </form> -->
-          <!--                 </div> -->
-          <!--             </div> -->
-          <!--         </div> -->
-          <!--     </div>  -->
-          <!-- </div>   -->
+
           <div class="response">
             <h2>{{response}}</h2>
           </div>
-	  <!-- <div class="friend"> -->
-	  <!--   {% for item in friends %} -->
-	  <!--   <p> {{item}} </p> -->
-	  <!--   {% endfor %} -->
-	  <!-- </div> -->
+
           <div class="book_list">
             <!-- you can iterate on a list to add many items -->
             {% for chunk in toPass %}
@@ -133,6 +73,5 @@
             {% endfor %}
           </div>
     </article>
-    <!-- {% include 'components/footer.html' %} -->
   </body>
 </html>
