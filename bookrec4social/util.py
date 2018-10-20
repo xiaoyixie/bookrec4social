@@ -10,8 +10,12 @@ from sklearn.metrics.pairwise import linear_kernel, cosine_similarity
 from sklearn.decomposition import TruncatedSVD
 from collections import defaultdict
 from numpy import linalg as LA
+import configparser
+config = configparser.ConfigParser()
+
 
 currentpath = str(os.path.dirname(os.path.abspath(__file__)))
+config= config.read(currentpath+"/config.init")
 
 not_found_error_message = "That username doesn't seem to exist on Goodreads, I'm sorry"
 private_error_message = "This user account is private, I'm sorry"
@@ -65,7 +69,7 @@ def get_user_vector(user_input, mapper):
     except:
         q = np.zeros((10000), dtype = np.float)
         # api_key = secret.API_KEY
-        api_key = '4nbvcBRfYZ1MSL06ARuw'
+        api_key = config.key
         if not user_input.isdigit():
             user_id = get_id_from_username(user_input, api_key)
         else:
@@ -111,7 +115,7 @@ def get_user_vector(user_input, mapper):
 def get_friends_information(user_input, q, mapper):
 
     from lxml import html
-    password = '320501xxy'
+    password = config.password
     session_requests = requests.session()
 
     login_url = 'https://www.goodreads.com/'
@@ -120,8 +124,8 @@ def get_friends_information(user_input, q, mapper):
     authenticity_token = list(set(tree.xpath("//input[@name='authenticity_token']/@value")))[0]
     print(authenticity_token)
     payload = {
-        "user[email]": "xyx1811@gmail.com",
-        "user[password]": password,
+        "user[email]": config['email'],
+        "user[password]": config['password'],
         "authenticity_token" : authenticity_token
         }        
     result = session_requests.post(
@@ -132,7 +136,7 @@ def get_friends_information(user_input, q, mapper):
     
     users = []
 
-    api_key = '4nbvcBRfYZ1MSL06ARuw'
+    api_key = config['key']
     url = get_url_from_id(user_input, api_key)
     print(url)
     result = session_requests.get(url, headers = dict(referer = url))
